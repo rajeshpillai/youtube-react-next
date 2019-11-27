@@ -65,20 +65,23 @@ const TaskApp = () => (
   </React.Fragment>
 )
 
-const TaskForm = () => (
-  <MyContext.Consumer>
-    {(context) => (
-      <div>
-          <input className="input-title" ref={(title)=>{this.taskTitle = title}} 
-            type="text" placeholder="what do you want to do today?" />
-          <button className="button-add" type="submit"
-            onClick={(e) => {context.onAddTask(this.taskTitle.value)}}>
-            &#x271A;
-          </button>
-      </div>
-    )}
-  </MyContext.Consumer>
-)
+const TaskForm = () => {
+  let taskTitle = React.createRef();
+  return  (
+    <MyContext.Consumer>
+      {(context) => (
+        <div>
+            <input className="input-title" ref={taskTitle} refxx={(title)=>{this.taskTitle = title}} 
+              type="text" placeholder="what do you want to do today?" />
+            <button className="button-add" type="submit"
+              onClick={(e) => {context.onAddTask(taskTitle.current.value)}}>
+              &#x271A;
+            </button>
+        </div>
+      )}
+    </MyContext.Consumer>
+  )
+}
 
 class Notification extends Component{
   constructor(props) {
